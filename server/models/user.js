@@ -1,90 +1,30 @@
 import mongoose from 'mongoose';
-import passportLocalMongoose from 'passport-local-mongoose';
-import findOrCreate from 'mongoose-findorcreate';
 
-// const userSchema = new mongoose.Schema ({
-//     username: String,
-//     name: String,
-//     googleId: String,
-//     secret: String
-// })
-
-
-// userSchema.plugin(passportLocalMongoose);
-// userSchema.plugin(findOrCreate);
-
-// const User = new mongoose.model('User', userSchema);
-
-// export default User;
-
-
-
-
-
-
-const UserSchema = new mongoose.Schema({
-    name: {
-      type: String,
-      trim: true,
-      required: 'Name is required'
+const UserSchema = new mongoose.Schema(
+    {
+      name: {
+        type: String,
+        required: true,
+      },
+      email: {
+        type: String,
+        required: true,
+        unique: true,
+      },
+      password: {
+        type: String,
+        required: true,
+      },
+      image: {
+        type: String,
+        default:
+          "https://cdn-icons-png.flaticon.com/512/1160/1160428.png?w=826&t=st=1670534353~exp=1670534953~hmac=11b2f5641c175a26f865c794e42362b4a0e4fda74b4ef2dff4e94aef9eab8095",
+      },
     },
-    email: {
-      type: String,
-      trim: true,
-      unique: 'Email already exists',
-      match: [/.+\@.+\..+/, 'Please fill a valid email address'],
-      required: 'Email is required'
-    },
-    hashed_password: {
-      type: String,
-      required: "Password is required"
-    },
-    salt: String,
-    updated: Date,
-    created: {
-      type: Date,
-      default: Date.now
-    }
-  })
+    { timestamps: true }
+  );
   
-  UserSchema
-    .virtual('password')
-    .set(function(password) {
-      this._password = password
-      this.salt = this.makeSalt()
-      this.hashed_password = this.encryptPassword(password)
-    })
-    .get(function() {
-      return this._password
-    })
-  
-  UserSchema.path('hashed_password').validate(function(v) {
-    if (this._password && this._password.length < 6) {
-      this.invalidate('password', 'Password must be at least 6 characters.')
-    }
-    if (this.isNew && !this._password) {
-      this.invalidate('password', 'Password is required')
-    }
-  }, null)
-  
-  UserSchema.methods = {
-    authenticate: function(plainText) {
-      return this.encryptPassword(plainText) === this.hashed_password
-    },
-    encryptPassword: function(password) {
-      if (!password) return ''
-      try {
-        return crypto
-          .createHmac('sha1', this.salt)
-          .update(password)
-          .digest('hex')
-      } catch (err) {
-        return ''
-      }
-    },
-    makeSalt: function() {
-      return Math.round((new Date().valueOf() * Math.random())) + ''
-    }
-  }
-  
-  export default mongoose.model('User', UserSchema)
+
+const User = new mongoose.model('User', UserSchema);
+
+export default User;
