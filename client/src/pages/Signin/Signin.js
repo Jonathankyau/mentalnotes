@@ -1,11 +1,10 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import CustomInput from "../../components/CustomInput";
-import GoogleAuth from "../../components/GoogleAuth/GoogleAuth";
+import CustomInput from "../../components/customInput";
+import GoogleAuth from "../../components/googleAuth/googleAuth";
 import "./Signin.css";
-import FacebookAuth from "../../components/FacebookAuth/FacebookAuth";
-import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
+import LoadingSpinner from "../../components/loadingSpinner/loadingSpinner";
 
 function Signin() {
   const navigate = useNavigate();
@@ -57,15 +56,15 @@ function Signin() {
 
   return (
     <div className="container" onSubmit={onSubmitHandler}>
-      <div class="col-lg-4 col-md-6 col-sm-8 mx-auto">
+      <div className="col-lg-4 col-md-6 col-sm-8 mx-auto">
         <h1>
-          Connection <i class="fa fa-sign-in" aria-hidden="true"></i>
+          Connection <i className="fa fa-sign-in" aria-hidden="true"></i>
         </h1>
         <div
           className="p-6 shadow-lg p-3 mb-5 bg-body rounded"
           style={{ backgroundColor: "white" }}
         >
-          <form class="form-group">
+          <form className="form-group">
             <CustomInput
               label="Email"
               placeholder="name@exemple.com"
@@ -88,19 +87,18 @@ function Signin() {
             <button className="submit" type="submit">
               Sign In
             </button>
-            <div class="row px-3 mb-4">
-              <div class="line"></div>
-              <small class="or text-center">Or</small>
-              <div class="line"></div>
+            <div className="row px-3 mb-4">
+              <div className="line"></div>
+              <small className="or text-center">Or</small>
+              <div className="line"></div>
             </div>
 
             <div className="d-flex flex-row mb-3 justify-content-evenly social-media">
               <GoogleAuth informParent={informParent} />
-              <FacebookAuth informParent={informParent} />
             </div>
             <h6>
               If you dont have an account yet,{" "}
-              <Link to="/signup">Creat One</Link> here!
+              <Link to="/signup">Create one</Link> here!
             </h6>
           </form>
         </div>
@@ -108,7 +106,7 @@ function Signin() {
     </div>
   );
   // return (
-  //   <div className="App">{isLoading ? <LoadingSpinner /> : renderSignin}</div>
+  //   <div classNameName="App">{isLoading ? <LoadingSpinner /> : renderSignin}</div>
   // );
 }
 

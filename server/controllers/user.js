@@ -3,8 +3,8 @@ import jwt from 'jsonwebtoken';
 import { OAuth2Client } from 'google-auth-library';
 import fetch from 'node-fetch';
 import User from '../models/User.js'; // load User model
-import SignupValidation from '../validator/SignupValidation' // load input validation
-import SigninValidation from '../validator/SigninValidation'
+import SignupValidation from '../validator/SignupValidation.js' // load input validation
+import SigninValidation from '../validator/SigninValidation.js'
 
 
 export default {

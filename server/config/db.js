@@ -1,14 +1,15 @@
-import mongoose from 'mongoose';
+// import mongoose from 'mongoose';
 
 
-mongoose
-  .connect("mongodb://localhost:27017/Authentication", {
-    useUnifiedTopology: true,
-    useNewUrlParser: true,
-  })
-  .then(() => console.log("mongoose connected"))
-  .catch((err) => console.log(err));
+// mongoose
+//   .connect("mongodb://0.0.0.0:27017/Authentication", {
+//     useUnifiedTopology: true,
+//     useNewUrlParser: true,
+//   })
+//   .then(() => console.log("mongoose connected"))
+//   .catch((err) => console.log(err));
 
-const db = mongoose.connection;
+// const db = mongoose.connection;
 
-module.exports = db;
+// export default db;
+

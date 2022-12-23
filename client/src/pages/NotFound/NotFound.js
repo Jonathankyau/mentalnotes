@@ -5,7 +5,7 @@ function NotFound() {
   return (
     <div className="ziwi">
       <h3>404 page not found</h3>
-      <i class="fa fa-search fa-xl" aria-hidden="true"></i>
+      <i className="fa fa-search fa-xl" aria-hidden="true"></i>
 
       <h4>
         {"\n"}

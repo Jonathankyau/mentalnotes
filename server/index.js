@@ -1,5 +1,6 @@
 import express from 'express'; // web framework for Node.js
 import session from 'express-session';
+import cookieSession from 'cookie-session';
 import passport from 'passport';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
@@ -7,13 +8,13 @@ import cors from 'cors'; // allows cross origin resource sharing
 import noteRoutes from './routes/note.js';
 import userRoutes from './routes/user.js';
 import dotenv from 'dotenv';
-import db from './config/db';
+// import db from '../server/config/db.js';
 
 // load env variables
 dotenv.config()
 
 
-const CONNECTION_URL = process.env.CONNECTION_URL;
+const MONGO_URL = process.env.MONGO_URL;
 const PORT = process.env.PORT || 5000;
 
 const app = express();
@@ -24,8 +25,8 @@ const app = express();
 // app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json({limit: "20mb", extended: true}));
 app.use(bodyParser.urlencoded({limit: "20mb", extended: true}));
-app.use(express.static(__dirname + "/../client/public"));
-// app.use(cookieParser())
+app.use(express.static("../../client/public"));
+
 
 
 app.use(cors({
@@ -39,24 +40,50 @@ app.use('/user', userRoutes);
 
 
 // sessions
-app.use(session({
+app.use(cookieSession({
     secret: 'keyboard warrior',
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
+    sameSite: 'none', // must be 'none' to enable cross-site delivery
+    secure: true, // must be true if sameSite='none'
+    // cookie: {
+    //     // sameSite: process.env.NODE_ENV === "production" ? 'none' : 'lax', // must be 'none' to enable cross-site delivery
+    //     // secure: process.env.NODE_ENV === "production", // must be true if sameSite='none'
+    //   }
 }))
 
-// passport middleware
-app.use(passport.initialize());
-app.use(passport.session());
-
-
+// enable the "secure" flag on the sessionCookies object
+app.use((req, res, next)=>{
+    req["sessionCookies"].secure = true;
+    next();
+});
 
 // // logout option
 // app.get("/logout", function(req, res){
 //     res.redirect("http://localhost:3000/");
 // });
 
+mongoose.set("strictQuery", false);
 
-mongoose.connect(CONNECTION_URL).then(() => app.listen(PORT, () => 
+mongoose.connect(MONGO_URL).then(() => app.listen(PORT, () => 
     console.log(`Connection is established and running on port: ${PORT}`)
 )).catch((err) => console.log(err.message));
+
+
+
+app.listen(PORT, function () {
+    console.log(`Server Runs Perfectly at http://localhost:${PORT}`);
+  });
+
+// mongoose
+//   .connect("mongodb://localhost:27017/Authentication", {
+//     useUnifiedTopology: true,
+//     useNewUrlParser: true,
+//   })
+//   .then(() => console.log("mongoose connected"))
+//   .catch((err) => console.log(err));
+
+// const db = mongoose.connection;
+
+// export default db;
+

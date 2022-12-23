@@ -1,5 +1,5 @@
 import validator from 'validator';
-import isEmpty from './IsEmpty';
+import isEmpty from './IsEmpty.js';
 
 export default function SignupValidation(data) {
     let regex = /(?=(.*[0-9]))((?=.*[A-Za-z0-9])(?=.*[A-Z])(?=.*[a-z]))^.{8,}$/i;

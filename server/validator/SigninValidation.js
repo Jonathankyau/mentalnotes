@@ -1,7 +1,6 @@
 import validator from 'validator';
-import isEmpty from './isEmpty';
+import isEmpty from './isEmpty.js';
 
-// module.exports = function SigninValidation(data) {
 
 export default function SigninValidation(data) {
     let errors = {};

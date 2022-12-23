@@ -30,16 +30,16 @@ export default function CreateNote() {
       noValidate
       autoComplete="off"
     >
-      <TextField id="outlined-basic" label="Date" variant="outlined" value={note.date} onChange={(event) => {
+      <TextField id="outlined-basic1" label="Date" variant="outlined" value={note.date} onChange={(event) => {
       setNote({ ...note, date: event.target.value})
         }} />
-      <TextField id="outlined-basic" label="Overall Mood" variant="outlined" value={note.mood} onChange={(event) => {
+      <TextField id="outlined-basic2" label="Overall Mood" variant="outlined" value={note.mood} onChange={(event) => {
       setNote({ ...note, mood: event.target.value})
       }}/>
-      <TextField id="outlined-basic" label="Reasons & Symptoms" variant="outlined" value={note.symptoms} onChange={(event) => {
+      <TextField id="outlined-basic3" label="Reasons & Symptoms" variant="outlined" value={note.symptoms} onChange={(event) => {
       setNote({ ...note, symptoms: event.target.value})
       }}/>
-      <TextField id="outlined-basic" label="Goals & Solutions" variant="outlined" value={note.solutions} onChange={(event) => {
+      <TextField id="outlined-basic4" label="Goals & Solutions" variant="outlined" value={note.solutions} onChange={(event) => {
       setNote({ ...note, solutions: event.target.value})
       }}/>
       <Button variant="contained" color="primary" onClick={createNote}>Post</Button>

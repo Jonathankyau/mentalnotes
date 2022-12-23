@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import CustomInput from "../../components/CustomInput";
+import CustomInput from "../../components/customInput";
 import "./Signup.css";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
+import LoadingSpinner from "../../components/loadingSpinner/loadingSpinner";
 
 function Signup() {
   const navigate = useNavigate();
@@ -42,13 +42,13 @@ return(
 
       <div className="col-lg-4 col-md-6 col-sm-8 mx-auto">
         <h1>
-          Inscription <i className="fa-solid fa-user"></i>
+          Create Your Account <i className="fa-solid fa-user"></i>
         </h1>
         <div
           className="p-6 shadow-lg p-3 mb-5 bg-body rounded"
           style={{ backgroundColor: "white" }}
         >
-          <form class="form-group" onSubmit={onSubmitHandler}>
+          <form className="form-group" onSubmit={onSubmitHandler}>
             <CustomInput
               label="Name"
               placeholder="name"

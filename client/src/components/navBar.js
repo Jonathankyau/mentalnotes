@@ -19,7 +19,7 @@ function Header({ user, Logout }) {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <Link className="nav-link active" to="/">
-              Profile <i class="fa fa-home" />
+              Profile <i className="fa fa-home" />
             </Link>
           </Nav>
           <Nav className="ms-auto">
@@ -27,17 +27,17 @@ function Header({ user, Logout }) {
               <>
                 <Link className="btn btn-outline" to="/signin">
                   {" "}
-                  Login <i class="fas fa-sign-in-alt" />
+                  Login <i className="fas fa-sign-in-alt" />
                 </Link>
                 <Link className="btn btn-outline" to="/signup">
                   {" "}
-                  Register <i class="fa fa-user-plus" />
+                  Register <i className="fa fa-user-plus" />
                 </Link>
               </>
             ) : (
               <Link className="btn btn-outline" to="#" onClick={LogoutHandler}>
                 {" "}
-                Logout <i class="fas fa-sign-out-alt" />
+                Logout <i className="fas fa-sign-out-alt" />
               </Link>
             )}
           </Nav>

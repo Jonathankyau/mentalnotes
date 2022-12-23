@@ -7,7 +7,7 @@ import "../googleAuth/googleAuth.css";
 const GoogleAuth = ({ informParent }) => {
   useEffect(() => {
     function initClient() {
-      gapi.client.init({
+      gapi.auth2.init({
         clientId: process.env.REACT_APP_GOOGLE_CLIENT_ID,
         scope: "",
       });
@@ -44,7 +44,7 @@ const GoogleAuth = ({ informParent }) => {
             onClick={renderProps.onClick}
             disabled={renderProps.disabled}
           >
-            <i class="fab fa-google" />
+            <i className="fab fa-google" />
           </button>
         )}
       />

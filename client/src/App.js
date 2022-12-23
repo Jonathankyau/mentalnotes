@@ -1,18 +1,16 @@
 import React from 'react';
-import { Container, AppBar, Typography, Grow, Grid } from '@mui/material';
+import { useEffect, useState } from "react";
 import Signin from './pages/Signin/Signin';
 import Signup from "./pages/Signup/Signup";
 import Profile from "./pages/Profile/Profile";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Note from './components/showNote/showNote.js';
-import Create from './components/createNote/createNote.js';
-import Calendar from './components/showCalendar/showCalendar.js';
 import Nav from './components/showNav/showNav.js';
-import Header from "./components/Navbar";
+import Header from "./components/navBar";
 import ProtectedRoute from "./components/protectedRoute.js";
 import NotFound from "./pages/NotFound/NotFound";
-import ForceRedirect from "./components/ForceRedirect";
-import Footer from "./components/Footer/Footer";
+import ForceRedirect from "./components/forceRedirect";
+import Footer from "./components/footer/footer";
+// import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import './index.css'
 import './styles/mood-map.css'
@@ -44,9 +42,9 @@ function App() {
     }
   };
   return (
-    <div className="App">
-      <Nav />
+   
       <BrowserRouter>
+      <Nav />
       <div className="bg-white" style={{ height: "100vh" }}>
         <Header Logout={Logout} user={isConnected} />
         <Routes>
@@ -78,7 +76,7 @@ function App() {
         </Routes>
         <Footer />
       </div>
-    </BrowserRouter>
+      {/* <div className="App">
       <Container maxWidth="lg"> 
         <Grow in>
           <Container>
@@ -102,7 +100,8 @@ function App() {
           </Container>
         </Grow>
       </Container>
-    </div>
+      </div> */}
+    </BrowserRouter>
   )}
 
 export default App;
